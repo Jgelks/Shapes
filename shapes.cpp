@@ -1,69 +1,74 @@
 #include <iostream>
 #include <cassert>
+#include <cmath>
 using namespace std;
 
 class Shape {
     public:
-    virtual void getArea() = 0;
-    virtual void getPerimeter() = 0;
+    virtual double getArea() = 0;
+    virtual double getPerimeter() = 0;
 };
 
 class Circle : public Shape {
     public:
-    Circle(int radius) {
+    Circle(double radius) {
         this->radius = radius;
     }
     Circle() {
         this->radius = 0;
     }
-    void setRadius(int radius) {
+    void setRadius(double radius) {
         this->radius = radius;
     }
-    void getArea() {
-        int Area = 3.14 * ((this->radius)*(this->radius));
-        cout << "The area is " << Area << "units squared" << endl;
+    double getArea() {
+        double Area = 3.14 * ((this->radius)*(this->radius));
+        return Area;
     }
-    void getPerimeter() {
-        int Perimeter = 2 * 3.14 * (this->radius);
-        cout << "The perimeter is " << Perimeter << "units" << endl;
-
+    double getPerimeter() {
+        double Perimeter = 2 * 3.14 * (this->radius);
+       return Perimeter;
     }
     private:
-    int radius;
+    double radius;
 };
 
 class Rectangle : public Shape {
   public: 
-  void getArea() {
+  double getArea() {
       
   }  
-  void getPerimeter() {
+  double getPerimeter() {
       
   }
   private: 
-    int length;
-    int width;
+    double length;
+    double width;
 };
 
 class RightTriangle : public Shape {
   public:
-  RightTriangle(int base, int height){
+  RightTriangle(double base, double height){
     this->base = base;
     this-> height = height;
   }
-  void getArea() {
-      
+  double getArea() {
+      double area;
+      area = (base * height)/2;
   }  
-  void getPerimeter() {
-      
+  double getPerimeter() {
+      double perimeter;
+      perimeter = base + height + (sqrt((base*base) + (height*height)));
+      cout << base;
   }
   private:
-  int base;
-  int height;
+  double base;
+  double height;
 };
 
 
 int main() {
-    
+    RightTriangle triangle(3,2);
+    triangle.getPerimeter();
+    assert(triangle.getArea() == 3);
     return 0;
 }
