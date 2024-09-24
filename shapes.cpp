@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cassert>
 using namespace std;
-//2
+
 class Shape {
     public:
     virtual void getArea() = 0;
@@ -10,11 +10,23 @@ class Shape {
 
 class Circle : public Shape {
     public:
+    Circle(int radius) {
+        this->radius = radius;
+    }
+    Circle() {
+        this->radius = 0;
+    }
+    void setRadius(int radius) {
+        this->radius = radius;
+    }
     void getArea() {
-        
+        int Area = 3.14 * ((this->radius)*(this->radius));
+        cout << "The area is " << Area << "units squared" << endl;
     }
     void getPerimeter() {
-        
+        int Perimeter = 2 * 3.14 * (this->radius);
+        cout << "The perimeter is " << Perimeter << "units" << endl;
+
     }
     private:
     int radius;
