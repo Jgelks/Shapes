@@ -34,11 +34,21 @@ class Circle : public Shape {
 
 class Rectangle : public Shape {
   public: 
+  Rectangle(double length, double width) {
+      this->length = length;
+      this->width = width;
+  }
+  Rectangle() {
+      this->length = 0;
+      this->width = 0;
+  }
   double getArea() {
-      
+      double Area = length * width;
+      return Area;
   }  
   double getPerimeter() {
-      
+      double Perimeter = (2 * length) + (2* width);
+      return Perimeter;
   }
   private: 
     double length;
@@ -51,14 +61,19 @@ class RightTriangle : public Shape {
     this->base = base;
     this-> height = height;
   }
+  RightTriangle() {
+      this->base = 0;
+      this->height = 0;
+  }
   double getArea() {
       double area;
       area = (base * height)/2;
+      return area;
   }  
   double getPerimeter() {
       double perimeter;
       perimeter = base + height + (sqrt((base*base) + (height*height)));
-      cout << base;
+      return perimeter;
   }
   private:
   double base;
@@ -70,5 +85,9 @@ int main() {
     RightTriangle triangle(3,2);
     triangle.getPerimeter();
     assert(triangle.getArea() == 3);
+    Rectangle r(3,2);
+    assert(r.getArea() == 6);
+    assert(r.getPerimeter() == 10);
+    cout << "All test passed succesfully!" << endl;
     return 0;
 }
