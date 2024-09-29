@@ -8,6 +8,7 @@ class Shape
 public:
     virtual double getArea() = 0;
     virtual double getPerimeter() = 0;
+    virtual string getName() = 0;
 };
 
 class Circle : public Shape
@@ -20,6 +21,9 @@ public:
     Circle()
     {
         this->radius = 0;
+    }
+    string getName() {
+        return this->name;
     }
     void setRadius(double radius)
     {
@@ -38,6 +42,7 @@ public:
 
 private:
     double radius;
+    string name = "Circle";
 };
 
 class Rectangle : public Shape
@@ -53,6 +58,9 @@ public:
         this->length = 0;
         this->width = 0;
     }
+    string getName() {
+        return this->name;
+    }
     double getArea()
     {
         double Area = length * width;
@@ -67,6 +75,7 @@ public:
 private:
     double length;
     double width;
+    string name = "Rectangle";
 };
 
 class Square : public Rectangle
@@ -75,6 +84,9 @@ public:
     Square(double side)
     {
         this->side = side;
+    }
+    string getName() {
+        return this->name;
     }
     double getArea()
     {
@@ -89,6 +101,7 @@ public:
 
 private:
     double side;
+    string name = "Square";
 };
 
 class RightTriangle : public Shape
@@ -103,6 +116,9 @@ public:
     {
         this->base = 0;
         this->height = 0;
+    }
+    string getName() {
+        return this->name;
     }
     double getArea()
     {
@@ -120,6 +136,7 @@ public:
 private:
     double base;
     double height;
+    string name = "Right Triangle";
 };
 
 class IsocelesTriangle : public RightTriangle
@@ -133,6 +150,9 @@ public:
     {
         this->base = 0;
 
+    }
+    string getName() {
+        return this->name;
     }
     double getArea()
     {
@@ -149,7 +169,12 @@ public:
 
 private:
     double base;
+    string name = "Isoceles Right Triangle";
 };
+
+void printAreaToScreen(Shape *s) {
+    cout << "This " << s->getName() << " has an area of " << s->getArea() << " units squared!" << endl;
+}
 
 
 int main()
@@ -171,8 +196,10 @@ int main()
     assert(itriangle.getPerimeter() > 6.82);
     assert(itriangle.getPerimeter() < 6.83);
     assert(itriangle.getArea() == 2);
-
-cout << "did it really";
-    cout << "All test passed succesfully!" << endl;
+    printAreaToScreen(&r);
+    printAreaToScreen(&c);
+    printAreaToScreen(&itriangle);
+    printAreaToScreen(&triangle);
+    cout << "All tests passed succesfully!" << endl;
     return 0;
 }
